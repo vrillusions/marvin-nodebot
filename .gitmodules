@@ -4,3 +4,9 @@
 [submodule "node_modules/node-expat"]
 	path = node_modules/node-expat
 	url = git://github.com/astro/node-expat.git
+[submodule "node_modules/ltx"]
+	path = node_modules/ltx
+	url = git://github.com/astro/ltx.git
+[submodule "node_modules/node-stringprep"]
+	path = node_modules/node-stringprep
+	url = git://github.com/astro/node-stringprep.git
