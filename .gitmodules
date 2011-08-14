@@ -1,0 +1,6 @@
+[submodule "lib/node-xmpp"]
+	path = lib/node-xmpp
+	url = git://github.com/astro/node-xmpp.git
+[submodule "lib/node-expat"]
+	path = lib/node-expat
+	url = git://github.com/astro/node-expat.git
