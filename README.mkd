@@ -1,3 +1,19 @@
 # Marvin Node.js bot
 
 This is my first attempt at a node.js bot, want to do multiple protocols but starting out with jabber.
+
+## Requirements
+
+- nodejs (Currently developing on v0.4.10)
+- nodejs-dev (required to build node-expat and node-stringprep)
+- libicu-dev (required to built node-stringprep)
+
+## Install
+
+    cp config-example.js config.js
+    edit config.js
+    cd node_modules/node-expat
+    node-waf configure
+    node-waf build
+    cd ../node-stringprep
+    ./install.sh
