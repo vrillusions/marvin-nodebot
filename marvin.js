@@ -64,3 +64,8 @@ bot.on('stanza', function(stanza) {
 bot.on('error', function(e) {
     sys.puts(e);
 });
+
+process.on('SIGINT', function() {
+    debug('Control-C received, closing');
+    bot.end();
+});
