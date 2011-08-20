@@ -6,6 +6,7 @@ var sys = require('sys');
 var xmpp = require('node-xmpp');
 // WAIT TILL I NEED IT - var argv = process.argv;
 var config = require('./config.js');
+var commands = require('./commands.js');
 
 var bot = new xmpp.Client({ jid: config.xmpp.jid, password: config.xmpp.password });
 
@@ -23,6 +24,7 @@ bot.on('online', function() {
 
 bot.on('stanza', function(stanza) {
     debug(stanza);
+    //console.log(stanza.children);
     // Handle subscribe requests
     if (stanza.is('presence') && stanza.attrs.type == 'subscribe') {
         debug('Subscription request from: ' + stanza.attrs.from);
@@ -51,6 +53,10 @@ bot.on('stanza', function(stanza) {
     if (stanza.is('message') &&
             // Important: never reply to errors!
             stanza.attrs.type !== 'error') {
+        msg = stanza.getChildText('body');
+        if (msg != null) {
+            commands.run_command(bot, stanza.attrs.from, msg);
+        }
         /*
         // Swap addresses...
         stanza.attrs.to = stanza.attrs.from;
