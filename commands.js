@@ -1,4 +1,5 @@
 var xmpp = require('node-xmpp');
+var random = require('node-random');
 
 /**
  * @param cl object xmpp.Client() object
@@ -12,16 +13,29 @@ function run_command(cl, from, msg) {
         var resp = '';
         resp += "Here are the available commands:\n";
         resp += "echo message - repeats what you say\n";
+        resp += "random - returns a random 32 character string from random.org\n";
         
         send_response(cl, from, resp)
-    }
-    else if (msg.toLowerCase().indexOf('delay') == 0) {
-        // Use for testing on non-blocking IO
-        do_delay(cl, from);
     }
     else if (msg.toLowerCase().indexOf('echo ') == 0) {
         // remove echo part and send it off
         send_response(cl, from, msg.substr(5));
+    }
+    else if (msg.toLowerCase().indexOf('random') == 0) {
+        // get a random string
+        // need to get 2 items 16 characters long since I can't get a single 32 character string
+        function randomCallback(str){
+            send_response(cl, from, str.join(''));
+        }
+        var options = {
+            secure: true,
+            num: 2,
+            length: 16
+        };
+        function randomErrorCallback(type, code, string) {
+            console.error("RANDOM.ORG Error: Type: "+type+", Status Code: "+code+", Response Data: "+string);
+        }
+        random.generateStrings(randomCallback, options, randomErrorCallback);
     }
     else {
         // unknown command
@@ -39,14 +53,4 @@ function send_response(cl, to, msg) {
         c('body').t(msg));
 }
 
-function do_delay(cl, from) {
-    function sleep(milliSeconds) {
-        var startTime = new Date().getTime();
-        while (new Date().getTime() < startTime + milliSeconds);
-    }
-    
-    send_response(cl, from, 'Sleeping for 15 seconds');
-    sleep(15000);
-    send_response(cl, from, 'Done.');
-}
 exports.run_command = run_command;

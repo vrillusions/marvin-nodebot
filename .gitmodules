@@ -10,3 +10,6 @@
 [submodule "node_modules/node-stringprep"]
 	path = node_modules/node-stringprep
 	url = git://github.com/astro/node-stringprep.git
+[submodule "node_modules/node-random"]
+	path = node_modules/node-random
+	url = git://github.com/11rcombs/node-random.git
