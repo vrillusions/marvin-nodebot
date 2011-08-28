@@ -12,7 +12,10 @@ var bot = new xmpp.Client({ jid: config.xmpp.jid, password: config.xmpp.password
 
 function debug(msg) {
     // Eventually this will be optional but not right now
-    sys.puts(msg);
+    var d = new Date();
+    var timestamp = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + ' '
+        + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.' + d.getMilliseconds();
+    console.log(timestamp + ' ' + msg);
 }
 
 bot.on('online', function() {

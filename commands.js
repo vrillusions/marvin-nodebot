@@ -15,11 +15,11 @@ function run_command(cl, from, msg) {
         
         send_response(cl, from, resp)
     }
-    else if (msg.indexOf('delay') == 0) {
+    else if (msg.toLowerCase().indexOf('delay') == 0) {
         // Use for testing on non-blocking IO
         do_delay(cl, from);
     }
-    else if (msg.indexOf('echo ') == 0) {
+    else if (msg.toLowerCase().indexOf('echo ') == 0) {
         // remove echo part and send it off
         send_response(cl, from, msg.substr(5));
     }
