@@ -1,4 +1,4 @@
-# Marvin Node.js bot
+# Marvin Node.js bot [![status](http://stillmaintained.com/vrillusions/marvin-nodebot.png)](http://stillmaintained.com/vrillusions/marvin-nodebot)
 
 This is my first attempt at a node.js bot, want to do multiple protocols but starting out with jabber.
 
